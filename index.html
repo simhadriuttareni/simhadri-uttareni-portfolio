@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Simhadri Uttareni · Backend & AI Engineer</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0d11;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+      background-image: radial-gradient(circle at 10% 20%, rgba(108, 140, 255, 0.03) 0%, transparent 50%);
+    }
+
+    .portfolio {
+      max-width: 1280px;
+      width: 100%;
+      background: rgba(16, 20, 28, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 3.5rem;
+      padding: 2.5rem 2.8rem;
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: 720px) {
+      .portfolio { padding: 1.5rem 1.2rem; border-radius: 2rem; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2.2fr;
+      gap: 2.8rem;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* left column */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 2.5rem;
+      padding: 2rem 1.8rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 1.2rem;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.7);
+      background: #1e2532;
+      transition: 0.25s;
+    }
+
+    .avatar-wrapper img:hover {
+      transform: scale(1.03);
+      border-color: #6c8cff;
+      box-shadow: 0 0 30px -6px rgba(108, 140, 255, 0.2);
+    }
+
+    .name {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f0f4fe;
+      line-height: 1.2;
+      margin-bottom: 0.1rem;
+    }
+
+    .title-badge {
+      display: inline-block;
+      background: rgba(108, 140, 255, 0.12);
+      color: #b0c9ff;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(108, 140, 255, 0.15);
+      letter-spacing: 0.3px;
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-group {
+      width: 100%;
+      margin: 0.3rem 0;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      color: #d0def5;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.8rem;
+      margin: 0.2rem 0;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: 0.15s;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid transparent;
+      width: 100%;
+    }
+
+    .contact-item i {
+      width: 1.5rem;
+      color: #6c8cff;
+      font-size: 1rem;
+    }
+
+    .contact-item:hover {
+      background: rgba(108, 140, 255, 0.06);
+      border-color: rgba(108, 140, 255, 0.1);
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 1.2rem 0 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: #b0c4e8;
+      font-size: 1.4rem;
+      transition: 0.2s;
+      background: rgba(255, 255, 255, 0.02);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      color: white;
+      background: #283040;
+      transform: translateY(-4px);
+      border-color: #6c8cff;
+      box-shadow: 0 8px 24px -12px #6c8cff80;
+    }
+
+    .divider-light {
+      width: 50px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.04);
+      margin: 1rem auto;
+      border-radius: 10px;
+    }
+
+    .edu-mini {
+      width: 100%;
+      text-align: left;
+      margin-top: 0.2rem;
+    }
+
+    .edu-mini p {
+      color: #b7c9e6;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .edu-mini .label {
+      color: #cdd9f0;
+      font-weight: 450;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-mini .label i {
+      color: #6c8cff;
+    }
+
+    /* right column */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .summary-box {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.5rem 1.8rem;
+      border-radius: 2rem;
+      border-left: 4px solid #6c8cff;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .summary-box p {
+      color: #dee8fa;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 350;
+    }
+
+    .summary-box strong {
+      color: #c8d6ff;
+      font-weight: 500;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #eef3fc;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title i {
+      color: #6c8cff;
+      font-size: 1.2rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.03);
+      color: #cddcf5;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 450;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: 0.15s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(108, 140, 255, 0.08);
+      border-color: #6c8cff30;
+      color: white;
+    }
+
+    .project-item {
+      background: rgba(255, 255, 255, 0.015);
+      padding: 1.2rem 1.5rem;
+      border-radius: 1.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      transition: 0.2s;
+    }
+
+    .project-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(108, 140, 255, 0.08);
+    }
+
+    .project-item h4 {
+      color: #eef3fc;
+      font-weight: 500;
+      font-size: 1.05rem;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-item p {
+      color: #b7c9e6;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-item .desc-detail {
+      color: #a5b9da;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      opacity: 0.8;
+      margin-top: 0.2rem;
+      padding-left: 0.2rem;
+      border-left: 2px solid rgba(108, 140, 255, 0.15);
+      padding-left: 0.8rem;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .project-stack span {
+      background: rgba(108, 140, 255, 0.06);
+      color: #b7cbff;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid rgba(108, 140, 255, 0.06);
+    }
+
+    .project-links {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+    }
+
+    .project-links a {
+      color: #8aa4ff;
+      font-size: 0.75rem;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(108, 140, 255, 0.2);
+      transition: 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-links a i {
+      font-size: 0.7rem;
+    }
+
+    .project-links a:hover {
+      color: white;
+      border-bottom-color: #6c8cff;
+    }
+
+    .cert-badge {
+      display: inline-block;
+      background: rgba(255, 215, 100, 0.04);
+      border: 1px solid rgba(255, 215, 100, 0.08);
+      color: #e6d5b0;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-note {
+      margin-top: 0.2rem;
+      color: #6b7e9f;
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
+      text-align: right;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      padding-top: 1rem;
+    }
+
+    .hire-badge {
+      background: linear-gradient(145deg, #2a3448, #1b212e);
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid rgba(108, 140, 255, 0.15);
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #c8d6ff;
+      margin: 0.4rem 0 0.2rem;
+      box-shadow: 0 0 20px -8px #6c8cff20;
+    }
+
+    @media (max-width: 480px) {
+      .avatar-wrapper { width: 120px; height: 120px; }
+      .name { font-size: 1.6rem; }
+      .project-item { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="portfolio">
+
+  <div class="grid">
+
+    <!-- LEFT COLUMN : profile + contact + socials -->
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <!-- local image path – replace with your actual path or a web URL -->
+        <img src="file:///C:/Users/uttar/Downloads/Gemini_Generated_Image_ptal7zptal7zptal.png" alt="Simhadri Uttareni" />
+      </div>
+      <div class="name">SIMHADRI UTTARENI</div>
+      <div class="title-badge"><i class="fas fa-microchip" style="margin-right:6px;"></i>Backend & AI Engineer</div>
+
+      <div class="contact-group">
+        <a href="tel:+919618358423" class="contact-item" style="text-decoration: none;">
+          <i class="fas fa-phone-alt"></i> +91 9618358423
+        </a>
+        <a href="mailto:simhadri.devv@gmail.com" class="contact-item" style="text-decoration: none;">
+          <i class="fas fa-envelope"></i> simhadri.devv@gmail.com
+        </a>
+      </div>
+
+      <div class="hire-badge">
+        <i class="fas fa-handshake" style="margin-right: 8px; color: #6c8cff;"></i> open to work · freelance & full-time
+      </div>
+
+      <div class="divider-light"></div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/simhadri-uttareni/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/simhadriuttareni" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://leetcode.com/u/simhadri_02/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+      </div>
+
+      <div style="font-size:0.7rem; color:#6a7fa0; margin-top:0.2rem;">
+        <i class="fas fa-check-circle" style="color:#6c8cff; margin-right:4px;"></i> 200+ LeetCode · DSA
+      </div>
+
+      <div class="divider-light" style="margin: 0.8rem auto;"></div>
+
+      <div class="edu-mini">
+        <div class="label"><i class="fas fa-graduation-cap"></i> Education</div>
+        <p>B.Tech CSE (AI/DS) · Parul University</p>
+        <p style="font-size:0.75rem; color:#8fa3c9;">DSA · DBMS · OS · CN · AI</p>
+        <p style="font-size:0.7rem; color:#6f84aa; margin-top:0.2rem;">
+          <i class="fas fa-certificate" style="color:#6c8cff;"></i> Oracle AI/ML ·  Backend
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN : main content -->
+    <div class="main-content">
+
+      <!-- Summary -->
+      <div class="summary-box">
+        <p>
+          <i class="fas fa-quote-left" style="color:#6c8cff; opacity:0.4; margin-right:6px;"></i>
+          Backend & AI Engineer with <strong>production-grade</strong> experience in building <strong>scalable, event-driven microservices</strong> and <strong>enterprise RAG platforms</strong>. 
+          Proficient in Java, Spring Boot, Kafka, Redis, Docker, and AI integrations (Groq, Whisper, Embeddings). 
+          Strong foundation in DSA, DBMS, OS, CN, and System Design. 
+          <span style="color:#b0c9ff; font-weight:400;">• Open to freelance & full-time opportunities.</span>
+        </p>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="section-title"><i class="fas fa-cog"></i> Technical Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span><span class="skill-tag">SQL</span><span class="skill-tag">Python</span>
+          <span class="skill-tag">Spring Boot</span><span class="skill-tag">Spring Security</span>
+          <span class="skill-tag">Spring Data JPA</span><span class="skill-tag">Hibernate</span>
+          <span class="skill-tag">REST APIs</span><span class="skill-tag">Spring AI</span>
+          <span class="skill-tag">RAG</span><span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">Groq API</span><span class="skill-tag">OpenAI Whisper</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Apache Kafka</span><span class="skill-tag">Redis</span>
+          <span class="skill-tag">Git/GitHub</span><span class="skill-tag">Maven</span>
+          <span class="skill-tag">Docker</span><span class="skill-tag">Postman</span>
+          <span class="skill-tag">DSA (200+)</span>
+          <span class="skill-tag">AWS (learning)</span><span class="skill-tag">CI/CD</span>
+        </div>
+      </div>
+
+      <!-- Projects with enhanced descriptions -->
+      <div>
+        <div class="section-title"><i class="fas fa-code-branch"></i> Technical Projects</div>
+
+        <!-- Project 1: Event-Driven Microservices -->
+        <div class="project-item">
+          <h4><i class="fas fa-cloud" style="color:#6c8cff; font-size:0.9rem;"></i> Event-Driven Microservices Platform</h4>
+          <p><strong>Production-grade microservices</strong> for order, inventory, and payment domains using Spring Boot, Apache Kafka, and Redis.</p>
+          <div class="desc-detail">
+            <i class="fas fa-arrow-right" style="color:#6c8cff; font-size:0.6rem;"></i> 
+            Asynchronous event-driven communication with Kafka, enabling reliable order lifecycle processing across services. 
+            Integrated Redis caching, retry handling, and idempotent event processing to reduce database load and improve response efficiency. 
+            Containerized with Docker and enabled dynamic service discovery using Netflix Eureka.
+          </div>
+          <div class="project-stack"><span>Spring Boot</span><span>Kafka</span><span>Redis</span><span>Docker</span><span>Eureka</span><span>PostgreSQL</span></div>
+          <div class="project-links">
+            <a href="https://github.com/simhadriuttareni/Event-Driven-Cloud-Native-Microservices-E-Commerce-System" target="_blank"><i class="fab fa-github"></i> source code</a>
+          </div>
+        </div>
+
+        <!-- Project 2: Multimodal AI RAG Platform -->
+        <div class="project-item">
+          <h4><i class="fas fa-brain" style="color:#6c8cff; font-size:0.9rem;"></i> Multimodal AI Knowledge Platform (RAG)</h4>
+          <p><strong>Enterprise-grade RAG platform</strong> supporting PDF, text, audio, and video knowledge ingestion with AI-powered Q&A.</p>
+          <div class="desc-detail">
+            <i class="fas fa-arrow-right" style="color:#6c8cff; font-size:0.6rem;"></i> 
+            Integrated OpenAI Whisper and Apache PDFBox for automated transcription and document extraction. 
+            Built chunking, embedding generation, semantic retrieval, and AI-powered question answering using Llama 3.3 via Groq API. 
+            Designed scalable REST APIs with Spring Boot, PostgreSQL, and Docker for content management and knowledge retrieval.
+          </div>
+          <div class="project-stack"><span>Spring AI</span><span>Groq</span><span>Whisper</span><span>PostgreSQL</span><span>Docker</span><span>React</span></div>
+          <div class="project-links">
+            <a href="https://github.com/simhadriuttareni/Multimodal-AI-Knowledge-Platform" target="_blank"><i class="fab fa-github"></i> source code</a>
+          </div>
+        </div>
+
+        <!-- Project 3: AI Requirement Generator -->
+        <div class="project-item">
+          <h4><i class="fas fa-file-alt" style="color:#6c8cff; font-size:0.9rem;"></i> AI Requirement Generator – Backend</h4>
+          <p><strong>Production-grade Spring Boot backend</strong> that transforms high-level project ideas into structured software requirement documents.</p>
+          <div class="desc-detail">
+            <i class="fas fa-arrow-right" style="color:#6c8cff; font-size:0.6rem;"></i> 
+            Designed layered architecture with Controllers, Services, DTOs, Repositories, and Global Exception Handling following backend engineering best practices. 
+            Implemented PostgreSQL persistence using Spring Data JPA and Hibernate, along with validation, API documentation (Swagger), and health monitoring (Actuator). 
+            Containerized using Docker and Docker Compose for automated application and database provisioning.
+          </div>
+          <div class="project-stack"><span>Spring Boot</span><span>JPA</span><span>PostgreSQL</span><span>Docker</span><span>JWT</span><span>Swagger</span></div>
+          <div class="project-links">
+            <a href="https://github.com/simhadriuttareni/AI-Requirement-Generator" target="_blank"><i class="fab fa-github"></i> source code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications & DevOps -->
+      <div>
+        <div class="section-title"><i class="fas fa-certificate"></i> Certifications & DevOps</div>
+        <div>
+          <span class="cert-badge"><i class="fas fa-check-circle" style="color:#6c8cff;"></i> Oracle AI/ML Foundations</span>
+          <span class="cert-badge"><i class="fas fa-check-circle" style="color:#6c8cff;"></i>   Backend Engineering</span>
+          <span class="cert-badge"><i class="fas fa-aws" style="color:#ff9900;"></i> AWS (in progress)</span>
+          <span class="cert-badge"><i class="fas fa-sync-alt"></i> CI/CD pipeline</span>
+        </div>
+        <div style="margin-top:0.6rem; display:flex; flex-wrap:wrap; gap:1rem; color:#a5b9da; font-size:0.8rem;">
+          <span><i class="fas fa-database" style="color:#6c8cff;"></i> PostgreSQL · Redis</span>
+          <span><i class="fas fa-cloud" style="color:#6c8cff;"></i> Docker · Kafka</span>
+          <span><i class="fas fa-rocket" style="color:#6c8cff;"></i> AWS · CI/CD</span>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <i class="fas fa-sync-alt" style="margin-right: 6px; opacity:0.5;"></i> always responsive · production-grade engineering 
+        <i class="fas fa-heart" style="color:#6c8cff; opacity:0.6; margin-left:6px;"></i>
+      </div>
+
+    </div> <!-- main-content -->
+  </div> <!-- grid -->
+</div> <!-- portfolio -->
+
+<script>
+  (function() {
+    // all contact links work natively via tel: and mailto:
+    console.log('Portfolio ready – contact & social links active.');
+  })();
+</script>
+
+</body>
+</html>
